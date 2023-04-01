@@ -1,25 +1,18 @@
-const userModel = require("./models/UserModel")
+// const userModel = require("./models/UserModel")
 const express = require("express");
 const app = express();
-const cookiesParser = require("cookies-parser");
-app.use(cookiesParser);
-
+const cookiesParser = require("cookie-parser");
+app.use(cookiesParser());
 app.use(express.json());
 app.listen(3000, function () {
     console.log("server started at port 3000");
 })
 
-//Mounting
-const userRouter = express.Router();
-// const authRouter = express.Router();
 
+//user Router
+const userRouter = express.Router();
 let users=[];
 app.use('/user',userRouter);
-// app.use('/auth',authRouter);
-// authRouter.route('/signup')
-// .get(getSignUp)
-// .post(postSignUp)
-
 userRouter
 .route('/')
 .get(getUser)
@@ -27,11 +20,9 @@ userRouter
 .patch(updateUser)
 .delete(deleteUser)
 userRouter.route('/:id').get(getUserById)
-
 function getUser(req,res){
     res.send(users);
 }
-
 function postUser(req,res){
     console.log(req.body);
     users=req.body;
@@ -40,7 +31,6 @@ function postUser(req,res){
         user:req.body
     })
 }
-
 function updateUser(req,res){
     console.log(req.body);
     let datatoBeUpdated = req.body;
@@ -51,14 +41,12 @@ function updateUser(req,res){
         })
     }
 }
-
 function deleteUser(req,res){
     users = {};
     res.json({
         message:"Data has been deleted"
     }) 
 }
-
 function getUserById(req,res){
     console.log(req.params.id);
     let paramId=req.params.id;
@@ -72,6 +60,43 @@ function getUserById(req,res){
         message:"req received",
         data:obj
     })
+}
+
+//Auth Router
+const authRouter = express.Router();
+app.use("/auth",authRouter);
+authRouter.route('/signup')
+.get(getSignUp)
+.post(postSignUp)
+function getSignUp(req,res){
+    res.sendFile('/public/index.html',{root:__dirname});
+}
+function postSignUp(req,res){
+    let obj = req.body;
+    console.log(obj);
+    res.json({
+        message:"user signed up",
+        data:obj
+    });
+}
+
+//COOKIES
+userRouter
+.route("/getCookies")
+.get(getCookies)
+
+userRouter
+.route("/setCookies")
+.get(setCookies)
+
+function getCookies(req,res){
+    let cookies = res.cookie;
+    console.log(cookies);
+}
+
+function setCookies(req,res){
+    res.cookie('isLoggedIn',false)
+    res.send("done")
 }
 
 

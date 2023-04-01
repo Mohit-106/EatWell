@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome To Registration Form</title>
+</head>
+
+  <body>
+  <!-- Main div code -->
+  <div id="main">
+  <div class="h-tag">
+  <h2>Create Your Account</h2>
+  </div>
+  <!-- create account div -->
+  <div class="login">
+  <table cellspacing="2" align="center" cellpadding="8" border="0">
+  <tr>
+  <td align="right">Enter Name :</td>
+  <td><input type="text" placeholder="Enter user here" class="tb name" /></td>
+  </tr>
+  <tr>
+  <td align="right">Enter Email ID :</td>
+  <td><input type="email" placeholder="Enter Email ID here" class="tb email" /></td>
+  </tr>
+  <tr>
+  <td align="right">Enter Password :</td>
+  <td><input type="password" placeholder="Enter Password here" class="tb password" /></td>
+  <tr>
+  <td></td>
+  <td>
+  <input type="submit" value="Create Account" class="btn" /></td>
+  </tr>
+  </table>
+  </div>
+  <!-- create account box ending here.. -->
+  </div>
+  <!-- Main div ending here... -->
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    let btn = document.querySelector("input[type='submit']");
+    btn.addEventListener('click', async function(e){
+        e.preventDefault();
+        let email = document.querySelector("input[type='email']").value;
+        let name = document.querySelector("input[type='text']").value;
+        let password = document.querySelector("input[type='password']").value;
+        let res = await axios.post('/auth/signup',{email,name,password})
+        console.log(res);
+    })
+  </script>
+  </body>
+  </html>
