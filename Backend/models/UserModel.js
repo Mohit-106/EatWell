@@ -2,7 +2,6 @@ const express = require("express");
 const mongoose = require("mongoose");
 const emailValidator = require("email-validator");
 const bcrypt = require("bcrypt");
-
 const db_link = 'mongodb+srv://admin:JVbzCDVeKr0JnODE@cluster0.meiuaxw.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(db_link)
 .then(function(db){
@@ -52,18 +51,14 @@ userSchema.pre('save',async function(){
     console.log(hashedString);
 })
 
-//model 
 const userModel = mongoose.model('userModel',userSchema);
-(async function createUser(){
-    let user = {
-        name : "Mohit",
-        email : "mohitjsusdscadcwdsiu@gmail.com",
-        password: "123456781010",
-        confirmPassword: "123456781010"
-    };
-    let data = await userModel.create(user);
-    console.log(data);
-})();
 
-module.exports= userModel;
+module.exports = userModel;
+
+
+
+
+
+
+
 
