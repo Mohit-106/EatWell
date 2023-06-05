@@ -8,11 +8,8 @@ async function profileController(req, res) {
             data: user,
             message: "Data about logged in user is send"
         });
-        // model by Id -> get
-        // res-> send 
     } catch (err) {
         res.end(err.message);
-
     }
 }
 async function getAllUsersController(req, res) {

@@ -44,27 +44,22 @@ let userSchema = new mongoose.Schema({
             message: "password miss match"
         },
     },
-    // pic: {
-    //     type: String,
-    //     default: "dp.png",
-    // },
+    profileImage: {
+        type: String,
+        default: "dp.png",
+    },
     otp: {
         type: String
     },
     otpExpiry: {
         type: Date
+    },
+    role :{
+        type:String,
+        enum:['admin','user'],
+        default:'user'
     }
-
 })
-// product Knowledge
-// user data -> store
-// name,
-// email,
-// phonenumber,
-// pic,
-// password,
-// address
-// ?? -> ??
 // model is similar to your collection 
 const FooduserModel = mongoose.model
     ('FooduserModel', userSchema);

@@ -12,7 +12,7 @@ async function signupController(req, res) {
         let newUser = await FooduserModel.create(data);
         console.log(newUser);
         res.status(201).json({
-            result: "user signed up"
+            result: "User Signed Up"
         });
     } catch (err) {
         res.status(400).json({
@@ -122,11 +122,6 @@ async function resetPasswordController(req, res) {
 async function forgetPasswordController(req, res) {
     try {
         let { email } = req.body;
-        //    mail
-        // by default -> FindAndUpdate -> not updated send document, 
-        // new =true -> you will get updated doc
-        // email -> do we have a user -> no user 
-        // update
         let user = await FooduserModel.findOne({ email });
         if (user) {
             let otp = otpGenerator();
@@ -154,8 +149,6 @@ function protectRoute(req, res, next) {
         const JWT = cookies.JWT;
         if (cookies.JWT) {
             console.log("protect Route Encountered");
-            // you are logged In then it will 
-            // allow next fn to run
             let token = jwt.verify(JWT, secrets.JWTSECRET);
             console.log("Jwt decrypted", token);
             let userId = token.data
@@ -177,12 +170,11 @@ function protectRoute(req, res, next) {
     }
 
 }
+
 // ******************helper function************************************************
 function otpGenerator() {
     return Math.floor(100000 + Math.random() * 900000);
 }
-// user update
-// delete
 
 module.exports = {
     signupController,

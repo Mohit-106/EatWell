@@ -7,4 +7,10 @@ const { protectRoute } = require("../controller/authController");
 userRouter.get("/", protectRoute, getAllUsersController);
 // loggedin user
 userRouter.get("/profile", protectRoute, profileController);
+
+
+
+
+
+
 module.exports=userRouter
