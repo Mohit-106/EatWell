@@ -10,7 +10,4 @@ userRouter.get("/profile", protectRoute, profileController);
 
 
 
-
-
-
-module.exports=userRouter
+module.exports=userRouter;

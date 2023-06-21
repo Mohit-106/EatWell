@@ -1,8 +1,3 @@
-//tech knowledge  
-// (schema) -> set of features and rules a certain entity should 
-// follow
-// * how to create a db ->  link share
-// connect to my app // mongoose 
 const mongoose = require('mongoose'); //npm i mongoose
 // db server link -> mongodb atlas ka link
 let secrets = require("../secrets");
@@ -20,27 +15,26 @@ mongoose
 let userSchema = new mongoose.Schema({
     name: {
         type: String,
-        // required: [true, "Name is not send"],
+        required: [true, "Name is not send"],
     },
     email: {
         type: String,
-        // required: [true, "email is missing"],
-        // unique: true
+        required: [true, "email is missing"],
+        unique: true
     },
     password: {
         type: String,
-        // required: [true, "password is missing"]
+        required: [true, "password is missing"]
     },
     confirmPassword: {
         type: String,
-        // required: [true, "confirmPassword is missing "],
-        // custom validator
+        required: [true, "confirmPassword is missing "],
+        //custom validator
         validate: {
             validator: function () {
-                // this referes to the current entry 
                 return this.password == this.confirmPassword;
             },
-            //    error message
+
             message: "password miss match"
         },
     },
@@ -56,10 +50,25 @@ let userSchema = new mongoose.Schema({
     },
     role :{
         type:String,
-        enum:['admin','user'],
+        enum:['admin','user','restaurantowner'],
         default:'user'
     }
 })
+
+// //We will use posthook to remove confirm password becoause it is a redundant data and we dont want to keep this in db
+// userSchema.pre('save',function(next){
+//     this.confirmPassword=undefined;
+//     next();
+// })
+
+// userSchema.pre('save',async function(){
+//     let salt = await bcrypt.genSalt();
+//     let hashedString = await bcrypt.hash(this.password,salt);
+//     this.password = hashedString;
+//     console.log(hashedString);
+// })
+
+
 // model is similar to your collection 
 const FooduserModel = mongoose.model
     ('FooduserModel', userSchema);

@@ -19,9 +19,10 @@ function AuthProvider({ children }) {
             let res = await axios.post
                 ("/api/v1/auth/signup", {
                     name: name,
+                    email,
                     password: password,
                     confirmPassword: confirm,
-                    email
+                    
                 })
             console.log("data", res.data);
 
@@ -46,9 +47,42 @@ function AuthProvider({ children }) {
         }
         console.log("login will be here");
     }
+
+    async function forgetPassword(email) {
+        try {
+            setLoading(true);
+            const res = await axios.patch("/api/v1/auth/forgetPassword", {
+                email: email
+            });
+            setLoading(false);
+        }
+        catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
+    }
+
+    async function ResetPassword(otp,password,confirmPassword,email) {
+        try {
+            setLoading(true);
+            const res = await axios.patch("/api/v1/auth/forgetPassword", {
+                otp:otp,
+                password:password,
+                confirmPassword: confirmPassword,
+                email: email
+            });
+            console.log(res);
+            setLoading(false);
+        }
+        catch (err) {
+            console.log(err);
+            setLoading(false);
+        }
+    }
+
     function logout() {
-        // localStorage.removeItem("user")
-        // userSet(null);
+        localStorage.removeItem("user")
+        userSet(null);
         console.log("logout will come here");
     }
 
@@ -56,7 +90,9 @@ function AuthProvider({ children }) {
         user,
         login,
         signUp,
-        logout
+        logout,
+        forgetPassword,
+        ResetPassword
     }
     return (
         < AuthContext.Provider value={value} >

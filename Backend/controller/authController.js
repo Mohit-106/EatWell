@@ -90,7 +90,6 @@ async function resetPasswordController(req, res) {
                     result: "wrong otp"
                 })
             } else {
-                // //////////////////////////
                 user = await FooduserModel.findOneAndUpdate(
                     { otp, email },
                     { password, confirmPassword },
@@ -108,8 +107,7 @@ async function resetPasswordController(req, res) {
                 })
             }
         }
-        // key delete -> get the document obj -> modify that object by removing useless keys  
-        // save to save this doc in db 
+
         console.log(user);
 
     } catch (err) {
@@ -154,7 +152,6 @@ function protectRoute(req, res, next) {
             let userId = token.data
             console.log("userId", userId);
             req.userId = userId;
-
             next();
         } else {
             res.send("You are not logged In Kindly Login");
@@ -162,7 +159,7 @@ function protectRoute(req, res, next) {
     } catch (err) {
         console.log(err);
         if (err.message == "invalid signature") {
-            res.send("TOken invalid kindly login");
+            res.send("Token invalid kindly login");
         } else {
 
             res.send(err.message);
