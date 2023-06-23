@@ -7,15 +7,15 @@ let planSchema = new mongoose.Schema({
         maxlength: [40, "Your plan length is more than 40 characters"],
     },
     duration: {
-        type: Number,
+        type: String,
         required: [true, "You Need to provide duration"]
     },
     price: {
-        type: Number,
+        type: String,
         required: true,
     },
     discount: {
-        type: Number,
+        type: String,
         validate: {
             validator: function () {
                 return this.discount < this.price;
@@ -23,13 +23,9 @@ let planSchema = new mongoose.Schema({
             // error
             message: "Discount must be less than actual price",
         },
-    }
-    , reviews: {
-        type: [mongoose.Schema.ObjectId],
-        ref: "FoodreviewModel"
     },
     averageRating: {
-        type:Number
+        type:String
     }
     // reviews -> buy 
 })

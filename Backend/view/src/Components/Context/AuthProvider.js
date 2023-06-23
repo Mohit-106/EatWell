@@ -65,7 +65,7 @@ function AuthProvider({ children }) {
     async function ResetPassword(otp,password,confirmPassword,email) {
         try {
             setLoading(true);
-            const res = await axios.patch("/api/v1/auth/forgetPassword", {
+            const res = await axios.patch("/api/v1/auth/resetPassword", {
                 otp:otp,
                 password:password,
                 confirmPassword: confirmPassword,

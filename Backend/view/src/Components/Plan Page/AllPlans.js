@@ -8,13 +8,14 @@ function AllPlans() {
     const [arr, arrset] = useState([]);
     useEffect(async () => {
         try {
-            const data = await axios.get("/api/plans?page=1&&limit=3");
+            const data = await axios.get("/api/v1/plan");
             console.log(data.data);
-            arrset(data.data.data);
+            arrset(data.data);
         } catch (err) {
             console.log(err);
         }
     }, [])
+    
     return (
         <div className='allplansCard'>
             <div className='h1Box'>
@@ -23,7 +24,7 @@ function AllPlans() {
             </div>
             <div className='allplanDetails'>
                 <div className='planDetails'>
-                    {arr && arr?.map((ele, key) =>
+                    {arr.map((ele, key) =>
                         <div className='apCard' key={key}>
                             <h3 className='h3'>{ele.name}</h3>
                             <div className='pCard1'>
@@ -31,7 +32,7 @@ function AllPlans() {
                                     <div className='price'>Rs {ele.price}</div>
                                     <div className="duration">/month</div>
                                 </div>
-                                <p className="point">That’s only 2₹ per meal</p>
+                                <p className="point">That’s only ₹ {(ele.price/30).toFixed(2)} per meal</p>
                             </div>
 
                             <div className='pCard2'>
@@ -45,7 +46,7 @@ function AllPlans() {
                                 </div>
                                 <div className='ppoints'>
                                     <img src={Tick} alt='' className='img' />
-                                    <p className='point'>{ele.ratingsAverage} rated meal.</p>
+                                    <p className='point'>{ele.averageRating} rated meal.</p>
                                 </div>
                             </div>
 

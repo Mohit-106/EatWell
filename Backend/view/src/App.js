@@ -33,10 +33,10 @@ function App() {
           <Route path="/resetPassword">
             <ResetPassword/>
           </Route>
-          {/* <Route path="/allPlans">
+          <Route path="/allPlans">
             <AllPlans />
           </Route>
-          <Route path="/planDetail/:id">
+          {/* <Route path="/planDetail/:id">
             <PlanDetail />
           </Route> */}
           <Route path="/">
