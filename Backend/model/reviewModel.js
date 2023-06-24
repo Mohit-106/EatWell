@@ -5,7 +5,7 @@ const reviewSchema = new mongoose.Schema({
         required: [true, "Review can't be empty"]
     },
     rating: {
-        type: Number,
+        type: String,
         min: 1,
         max: 5,
         required: [true, "Review must contain some rating"]
@@ -16,15 +16,13 @@ const reviewSchema = new mongoose.Schema({
     },
     user: {
         // info
-        type: mongoose.Schema.ObjectId, // _id
-        required: [true, "Review must belong to a user"],
-        ref:"FooduserModel"     
+        type: String,
+        required: [true, "Review can't be empty"]    
     },
     plan: {
         // info
-        type: mongoose.Schema.ObjectId, //_id
-        required: [true, "Review must belong to a plan "],
-        ref:"FoodplanModel"
+        type: String,
+        required: [true, "Review can't be empty"]    
     }
 })
 const ReviewModel = mongoose.model("FoodreviewModel",

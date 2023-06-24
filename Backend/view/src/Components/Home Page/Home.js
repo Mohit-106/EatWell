@@ -6,6 +6,7 @@ import Capture from "../Images/Capture.png";
 import Review from './Review';
 import Plans from './Plans';
 import Contact from './Contact';
+import { Link } from 'react-router-dom';
 import '../Styles/home.css'
 
 function Home() {
@@ -26,8 +27,7 @@ function Home() {
                         </div>
                         
                         <div className="btnBox">
-                            <button className="bookNowBtn btn"> Book Now</button>
-                            <button className="showMoreBtn btn">Show Me More</button>
+                            <button className="showMoreBtn btn"><Link to="/allPlans">Show More</Link></button>
                         </div>
                     </div>
                 </div>

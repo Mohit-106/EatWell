@@ -24,7 +24,8 @@ function NavBar() {
         <nav>
             <div className="menu">
                 <ul>
-                    <li><Link to="/">Home</Link></li>
+                     <li><Link to="/">Home</Link></li>
+                    <li><Link to="/profilePage">Profile</Link></li>
                     <li><Link to="/allPlans">Plans</Link></li>
                     {user ?
                         <>

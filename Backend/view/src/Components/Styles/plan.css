@@ -5,8 +5,13 @@
     width: 100%;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    flex-wrap: wrap;
+    
 }
+.planDetails > div {
+    padding: 10px;
+    margin-top: 2rem;
+  }
 .pCard{
     height: 400px;
     width: 280px;
@@ -41,7 +46,7 @@
 }
 .pCard .btn{
     position: relative;
-    top: 20px;
+    top: 2rem;
     margin: 0;
 }
 .btn a{
