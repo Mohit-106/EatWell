@@ -36,9 +36,9 @@ function App() {
           <Route path="/allPlans">
             <AllPlans />
           </Route>
-          {/* <Route path="/planDetail/:id">
+          <Route path="/planDetail/:id">
             <PlanDetail />
-          </Route> */}
+          </Route>
           <Route path="/">
             <Home />
           </Route>

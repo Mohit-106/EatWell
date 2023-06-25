@@ -40,14 +40,13 @@ function Review() {
                   <h4>Plan Name : {ele.plan}</h4>
                 </div>
                 <div className="frate">
-                   
                   {Array.from(Array(parseInt(ele.rating)).keys()).map((ele, key) => (
                     <img alt="" src={Star} className="img" />
                   ))}
                 </div>
-                {/* <div>
-                  <h4>Date : {ele.createdAt}</h4>
-                </div> */}
+                <div>
+                  <h4>Date : {ele.createdAt.slice(0, 10)}</h4>
+                </div>
               </div>
             ))}
         </div>

@@ -9,6 +9,7 @@ const userRouter = require("./routes/userRoutes");
 const authRouter = require("./routes/authRoutes");
 const planRouter = require("./routes/planRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
+const contactusRouter = require("./routes/contactusRoutes");
 // to  add post body data to req.body
 const rateLimit = require('express-rate-limit')
 
@@ -29,6 +30,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/plan", planRouter);
 app.use("/api/v1/review", reviewRouter);
+app.use("/api/v1/contact",contactusRouter);
 
 // update user Profile
 // delete user profile

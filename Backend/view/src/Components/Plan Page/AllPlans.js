@@ -49,8 +49,11 @@ function AllPlans() {
                                     <p className='point'>{ele.averageRating} rated meal.</p>
                                 </div>
                             </div>
-
-                            <button className='btn'> <Link to={`/planDetail/${ele._id}`} >I'm Hungry</Link></button>
+                            <div className='plan-btns'>
+                            <button className='btn'> <Link to={`/planDetail/${ele._id}`} >Buy</Link></button>
+                            <button className='btn'> <Link to={`/planDetail/${ele._id}`} >Add Review</Link></button>
+                            </div>
+                            
                         </div>
                     )}
 
