@@ -51,7 +51,7 @@ function Plans() {
                             </div>
                             <div className='plan-btns'>
                             <button className='btn'> <Link to={`/planDetail/${ele._id}`} >Buy</Link></button>
-                            <button className='btn'> <Link to={`/planDetail/${ele._id}`} >Add Review</Link></button>
+                            <button className='btn'> <Link to={`/planDetail/${ele._id}`} >Review</Link></button>
                             </div>
                         </div>
                     )}

@@ -18,17 +18,17 @@ function Home() {
                     <div className="iCard">
                         <div className="headerBox">
                             <div className="header1">
-                                <h1 className="hh1">MEAL PLANS.</h1>
+                                <h1 className="hh1 ">DELICIOUS MEAL</h1>
                             </div>
                             <div className="header2">
                                 <h1 className="hh1">FOR</h1>
                                 <h1 className=" animateh1">EVERYONE</h1>
                             </div>
-                        </div>
-                        
-                        <div className="btnBox">
+                            <div className="btnBox">
                             <button className="showMoreBtn btn"><Link to="/allPlans">Show More</Link></button>
                         </div>
+                        </div>
+                              
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@ function Home() {
                         </div>
                         <div className='fsummary'>
                             <p className='para'>
-                                Never cook again! We really mean that. Our subscription plans include up to 365 days/year of coverage and you can also choose to order more flexibly if that is your style.
+                            Never cook again! Experience Ultimate Convenience in Your Kitchen. Discover the Freedom of Our Subscription Plans, Providing Extensive Coverage for up to 365 Days a Year.
                             </p>
                         </div>
                     </div>

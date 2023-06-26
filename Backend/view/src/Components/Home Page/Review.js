@@ -16,11 +16,15 @@ function Review() {
     }
   }, []);
 
+  const styles = {
+    color: 'white'
+  };
+
   return (
     <div className="reviewImg">
       <div className="reviewCard">
         <div className="h1Box">
-          <h1 className="h1">REVIEWS</h1>
+          <h1 className="h1" style={styles} >REVIEWS</h1>
           <div className="line"></div>
         </div>
         <div className="rDetail">

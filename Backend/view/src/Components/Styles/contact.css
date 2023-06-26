@@ -35,11 +35,12 @@
     color: #6e6e6e;
 }
 .entry{
-    height: 15%;
+    height: 40%;
     width: 100%;
     margin-bottom:3%;
 }
 .entry-text {
+    height: 40%;
     width: 100%;
     font-size: 110%;
     margin-bottom: 5px;
@@ -50,7 +51,7 @@
     border: none;
     outline: none;
     border-radius: 3%;
-    padding: 5px;
+    padding: 15px;
     margin-bottom: 10px;
     background-color: rgb(241, 237, 237);
 }

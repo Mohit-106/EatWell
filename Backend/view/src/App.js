@@ -11,6 +11,7 @@ import AllPlans from './Components/Plan Page/AllPlans';
 import AuthProvider from './Components/Context/AuthProvider';
 import Profile from './Components/Profile Page/Profile';
 import PlanDetail from './Components/PlanDetail Page/PlanDetail';
+import Contact from './Components/Home Page/Contact';
 function App() {
   return (
     <Router>
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/">
             <Home />
+          </Route>
+          <Route path="/contact">
+            <Contact />
           </Route>
         </Switch>
       
