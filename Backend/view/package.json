@@ -13,6 +13,8 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@mui/icons-material": "^5.0.0",
     "@mui/material": "^5.0.0",
+    "@stripe/react-stripe-js": "^2.1.1",
+    "@stripe/stripe-js": "^1.54.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
@@ -23,9 +25,11 @@
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
+    "react-stripe-checkout": "^2.6.3",
     "recoil": "^0.4.1",
     "redux": "^4.1.1",
     "redux-devtools-extension": "^2.13.9",
+    "stripe": "^12.10.0",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

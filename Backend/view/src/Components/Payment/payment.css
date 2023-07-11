@@ -1,0 +1,28 @@
+.centered-stripe-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15rem;
+  }
+  
+  .stripe-checkout-button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .stripe-checkout-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .stripe-checkout-card {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  

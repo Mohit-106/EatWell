@@ -1,18 +1,21 @@
-import React from 'react';
-import Signup from './Components/Login Page/Signup';
-import Home from './Components/Home Page/Home';
-import './App.css';
+import React from "react";
+import Signup from "./Components/Login Page/Signup";
+import Home from "./Components/Home Page/Home";
+import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import NavBar from './Components/Home Page/NavBar';
-import Login from './Components/Login Page/Login';
-import ForgetPassword from './Components/Login Page/ForgetPassword';
-import ResetPassword from "./Components/Login Page/resetPassword"
-import AllPlans from './Components/Plan Page/AllPlans';
-import AuthProvider from './Components/Context/AuthProvider';
-import Profile from './Components/Profile Page/Profile';
-import PlanDetail from './Components/PlanDetail Page/PlanDetail';
-import Contact from './Components/Home Page/Contact';
+import NavBar from "./Components/Home Page/NavBar";
+import Login from "./Components/Login Page/Login";
+import ForgetPassword from "./Components/Login Page/ForgetPassword";
+import ResetPassword from "./Components/Login Page/resetPassword";
+import AllPlans from "./Components/Plan Page/AllPlans";
+import AuthProvider from "./Components/Context/AuthProvider";
+import Profile from "./Components/Profile Page/Profile";
+import PlanDetail from "./Components/PlanDetail Page/PlanDetail";
+import Payment from "./Components/Payment/payment";
 function App() {
+  const onToken = (token) => {
+    console.log(token);
+  };
   return (
     <Router>
       {/* is providing the data that is your user logged in or not */}
@@ -32,7 +35,7 @@ function App() {
             <ForgetPassword />
           </Route>
           <Route path="/resetPassword">
-            <ResetPassword/>
+            <ResetPassword />
           </Route>
           <Route path="/allPlans">
             <AllPlans />
@@ -40,14 +43,14 @@ function App() {
           <Route path="/planDetail/:id">
             <PlanDetail />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/contact">
-            <Contact />
+          <Route path="/payment">
+            <Payment 
+            />
           </Route>
         </Switch>
-      
       </AuthProvider>
     </Router>
   );

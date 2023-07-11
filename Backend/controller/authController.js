@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const secrets = require("../secrets");
+const bcrypt = require('bcrypt');
 const FooduserModel = require("../model/userModel");
 const mailSender = require("../utilities/mailSender");
 
@@ -21,55 +22,97 @@ async function signupController(req, res) {
         );
     }
 }
+// async function loginController(req, res) {
+//     try {
+//         let data = req.body;
+//         let { email, password } = data;
+//         if (email && password) {
+//             let user = await FooduserModel.findOne({ email: email });
+//             if (user) {
+//                 if (user.password == password) {
+//                     // create JWT ->-> payload, secret text 
+//                     const token = jwt.sign({
+//                         data: user["_id"],
+//                         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24)
+//                     }, secrets.JWTSECRET);
+//                     // put token into cookies
+//                     res.cookie("JWT", token);
+//                     // send the token 
+//                     user.password = undefined;
+//                     user.confirmPassword = undefined;
+//                     console.log("login", user);
+//                     // before sending to frontend 
+//                     res.status(200).json({ //1
+//                         user
+//                     });
+//                 } else {
+//                     // email or password missmatch
+//                     res.status(400).json({ //2
+//                         result: "email or password does not match"
+//                     })
+//                 }
+//             } else {
+//                 // user not found
+//                 res.status(404).json({ //3 
+//                     result: "user not found"
+//                 })
+//             }
+//         } else {
+//             // something is missing
+//             res.status(400).json({ //4
+//                 result: "user not found kindly signup"
+//             });
+//         }
+//     } catch (err) {
+//         // server crashed
+//         res.status(500).json({
+//             result: err.message
+//         }
+//         );
+//     }
+// }
+
+// const FooduserModel = require('../models/FooduserModel');
+// const jwt = require('jsonwebtoken');
+// const secrets = require('../secrets');
+
 async function loginController(req, res) {
-    try {
-        let data = req.body;
-        let { email, password } = data;
-        if (email && password) {
-            let user = await FooduserModel.findOne({ email: email });
-            if (user) {
-                if (user.password == password) {
-                    // create JWT ->-> payload, secret text 
-                    const token = jwt.sign({
-                        data: user["_id"],
-                        exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24)
-                    }, secrets.JWTSECRET);
-                    // put token into cookies
-                    res.cookie("JWT", token);
-                    // send the token 
-                    user.password = undefined;
-                    user.confirmPassword = undefined;
-                    console.log("login", user);
-                    // before sending to frontend 
-                    res.status(200).json({ //1
-                        user
-                    });
-                } else {
-                    // email or password missmatch
-                    res.status(400).json({ //2
-                        result: "email or password does not match"
-                    })
-                }
-            } else {
-                // user not found
-                res.status(404).json({ //3 
-                    result: "user not found"
-                })
-            }
+  try {
+    const data = req.body;
+    const { email, password } = data;
+    if (email && password) {
+      const user = await FooduserModel.findOne({ email: email });
+      if (user) {
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (isPasswordValid) {
+          const token = jwt.sign(
+            {
+              data: user['_id'],
+              exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24, // Token expiration time (24 hours)
+            },
+            secrets.JWTSECRET
+          );
+          res.cookie('JWT', token);
+          user.password = undefined;
+          user.confirmPassword = undefined;
+          console.log('login', user);
+          res.status(200).json({ user });
         } else {
-            // something is missing
-            res.status(400).json({ //4
-                result: "user not found kindly signup"
-            });
+          res.status(400).json({ result: 'Email or password does not match' });
         }
-    } catch (err) {
-        // server crashed
-        res.status(500).json({
-            result: err.message
-        }
-        );
+      } else {
+        res.status(404).json({ result: 'User not found' });
+      }
+    } else {
+      res.status(400).json({ result: 'User not found, kindly sign up' });
     }
+  } catch (err) {
+    res.status(500).json({ result: err.message });
+  }
 }
+
+
+
 async function resetPasswordController(req, res) {
     try {
         let { otp, password, confirmPassword, email } =
@@ -110,7 +153,7 @@ async function resetPasswordController(req, res) {
 
         console.log(user);
 
-    } catch (err) {
+    }catch (err) {
         console.log(err);
         res.status(500).json({
             result: err.message

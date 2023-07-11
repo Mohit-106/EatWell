@@ -1,6 +1,7 @@
 const mongoose = require('mongoose'); //npm i mongoose
 // db server link -> mongodb atlas ka link
 let secrets = require("../secrets");
+const bcrypt = require('bcrypt');
 
 // db  server connect -> mongodbAtlas connect 
 mongoose
@@ -55,21 +56,24 @@ let userSchema = new mongoose.Schema({
     }
 })
 
-// //We will use posthook to remove confirm password becoause it is a redundant data and we dont want to keep this in db
+//We will use posthook to remove confirm password becoause it is a redundant data and we dont want to keep this in db
 // userSchema.pre('save',function(next){
 //     this.confirmPassword=undefined;
 //     next();
 // })
 
-// userSchema.pre('save',async function(){
-//     let salt = await bcrypt.genSalt();
-//     let hashedString = await bcrypt.hash(this.password,salt);
-//     this.password = hashedString;
-//     console.log(hashedString);
-// })
 
+// Hash the password before saving to the database
+userSchema.pre('save', async function (next) {
+  try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(this.password, salt);
+    this.password = hashedPassword;
+    next();
+  } catch (error) {
+    return next(error);
+  }
+});
 
-// model is similar to your collection 
-const FooduserModel = mongoose.model
-    ('FooduserModel', userSchema);
+const FooduserModel = mongoose.model('FooduserModel', userSchema);
 module.exports = FooduserModel;
