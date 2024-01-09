@@ -12,14 +12,15 @@ import AuthProvider from "./Components/Context/AuthProvider";
 import Profile from "./Components/Profile Page/Profile";
 import PlanDetail from "./Components/PlanDetail Page/PlanDetail";
 import Payment from "./Components/Payment/payment";
+import PrivateRoute from "./Components/PrivateRoute";
+import Review from "./Components/Home Page/Review";
 function App() {
   const onToken = (token) => {
     console.log(token);
   };
   return (
     <Router>
-      {/* is providing the data that is your user logged in or not */}
-      <AuthProvider>
+        <AuthProvider>
         <NavBar />
         <Switch>
           <Route path="/signup">
@@ -37,15 +38,14 @@ function App() {
           <Route path="/resetPassword">
             <ResetPassword />
           </Route>
-          <Route path="/allPlans">
-            <AllPlans />
+          <Route path="/resetPassword">
+            <ResetPassword />
           </Route>
-          <Route path="/planDetail/:id">
-            <PlanDetail />
+          <Route path="/PlanDetail">
+            <PlanDetail/>
           </Route>
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <PrivateRoute exact path="/allPlans" component={AllPlans}/>
+          <PrivateRoute exact path="/" component={Home}/>
           <Route path="/payment">
             <Payment 
             />

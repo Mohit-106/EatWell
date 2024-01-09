@@ -2,13 +2,10 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router';
 export const AuthContext = React.createContext();
-//custom hook that allows components to access context data
 export function useAuth() {
     return useContext(AuthContext)
 }
-// sync -> if you have a user or not on login and logout 
-// It also exposes you lossley coupled auth functions
-// 
+
 function AuthProvider({ children }) {
     // const history = useHistory();
     const [user, userSet] = useState("");

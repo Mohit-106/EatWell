@@ -4,12 +4,11 @@ const bcrypt = require('bcrypt');
 const FooduserModel = require("../model/userModel");
 const mailSender = require("../utilities/mailSender");
 
-// ************************controller functions************************
+
 async function signupController(req, res) {
     try {
         let data = req.body;
         console.log(data);
-        // to create a document inside userModel
         let newUser = await FooduserModel.create(data);
         console.log(newUser);
         res.status(201).json({
@@ -22,59 +21,7 @@ async function signupController(req, res) {
         );
     }
 }
-// async function loginController(req, res) {
-//     try {
-//         let data = req.body;
-//         let { email, password } = data;
-//         if (email && password) {
-//             let user = await FooduserModel.findOne({ email: email });
-//             if (user) {
-//                 if (user.password == password) {
-//                     // create JWT ->-> payload, secret text 
-//                     const token = jwt.sign({
-//                         data: user["_id"],
-//                         exp: Math.floor(Date.now() / 1000) + (60 * 60 * 24)
-//                     }, secrets.JWTSECRET);
-//                     // put token into cookies
-//                     res.cookie("JWT", token);
-//                     // send the token 
-//                     user.password = undefined;
-//                     user.confirmPassword = undefined;
-//                     console.log("login", user);
-//                     // before sending to frontend 
-//                     res.status(200).json({ //1
-//                         user
-//                     });
-//                 } else {
-//                     // email or password missmatch
-//                     res.status(400).json({ //2
-//                         result: "email or password does not match"
-//                     })
-//                 }
-//             } else {
-//                 // user not found
-//                 res.status(404).json({ //3 
-//                     result: "user not found"
-//                 })
-//             }
-//         } else {
-//             // something is missing
-//             res.status(400).json({ //4
-//                 result: "user not found kindly signup"
-//             });
-//         }
-//     } catch (err) {
-//         // server crashed
-//         res.status(500).json({
-//             result: err.message
-//         }
-//         );
-//     }
-// }
 
-// const FooduserModel = require('../models/FooduserModel');
-// const jwt = require('jsonwebtoken');
-// const secrets = require('../secrets');
 
 async function loginController(req, res) {
   try {
@@ -92,7 +39,12 @@ async function loginController(req, res) {
             },
             secrets.JWTSECRET
           );
-          res.cookie('JWT', token);
+          //res.cookie('JWT', token);
+          res.cookie('JWT', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production', // Set 'secure' to true in production (HTTPS)
+            sameSite: 'strict', // Adjust this according to your requirements
+          });
           user.password = undefined;
           user.confirmPassword = undefined;
           console.log('login', user);

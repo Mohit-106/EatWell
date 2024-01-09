@@ -2,9 +2,7 @@ const express = require("express");
 const app = express();
 // npm i cookie parser
 const cookieParser = require("cookie-parser");
-// jsonwebtoken
-// token name is -> JWT & mechanism -> cookies
-// repersent -> collection
+
 const userRouter = require("./routes/userRoutes");
 const authRouter = require("./routes/authRoutes");
 const planRouter = require("./routes/planRoutes");
@@ -34,10 +32,7 @@ app.use("/api/v1/review", reviewRouter);
 app.use("/api/v1/contact",contactusRouter);
 app.use("/api/v1/payment",paymentRouter);
 
-// update user Profile
-// delete user profile
 
-// locahost:3000 -> express API 
 app.listen(3000, function () {
     console.log("server started at port 3000");
 })
@@ -49,17 +44,3 @@ app.listen(3000, function () {
 
 
 
-
-// create -> deleteUser, updateUser
-// {
-//     name: 'Jasbir',
-//     password: 'abcd',
-//     confirmPassword: 'abcd',
-//     email: 'abc@gmail.com',
-//     phonenumber: '8800953687',
-//     pic: 'dp.png',
-// -> unnique id
-//     _id: new ObjectId("62d2f2c0aaa6d2fe55d1e68c"),
-// mongoose
-//     __v: 0
-//   }

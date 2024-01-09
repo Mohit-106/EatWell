@@ -14,10 +14,10 @@ async function mailSender(email, token) {
     });
 
     let dataObj = {
-        from: '"Flex Fit👻" <foo@example.com>', // sender address
+        from: '"EatWell🍴" <foo@example.com>', // sender address
         to: email, // list of receivers
-        subject: "Hello ✔ Your reset token ", // Subject line
-        html: `<b>Token ${token}?</b>`,
+        subject: "Hello ✔ Your OTP", // Subject line
+        html: `<b>OTP ${token}</b>`,
     }
     // send mail with defined transporter object
     let info = await transporter.sendMail(dataObj);

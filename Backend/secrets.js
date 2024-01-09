@@ -5,3 +5,6 @@ module.exports = {
     APP_EMAIL : "sharmamohitmk748@gmail.com",
     STRIPE_KEY : "sk_test_51NO3gASIecd9FjmOKlJGXS3UovhhWh2nu3rGU6iP0ZI5s2JLQcYapNL49oPCL3GBSXKz8UqpjaBJsenKNEUfeeWL00BEFtCZfC",
 }
+
+// FoodAppDB is the database
+// Gmail -> mwkmohit106@gmail.com
